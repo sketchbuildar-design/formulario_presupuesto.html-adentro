@@ -3,414 +3,442 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solicitud de Presupuesto</title>
+    <title>Solicitud de Presupuesto · Sketch Build</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #111111 0%, #1a1a1a 100%);
             min-height: 100vh;
-            padding: 20px;
+            padding: 24px 16px;
             display: flex;
-            align-items: center;
+            align-items: flex-start;
             justify-content: center;
         }
-        
-        .container {
-            max-width: 750px;
-            width: 100%;
-            background: white;
+
+        .wrap { max-width: 680px; width: 100%; }
+
+        .header {
+            background: #000;
             border-radius: 12px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            padding: 30px;
-        }
-        
-        h1 {
-            font-size: 24px;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: #1f2937;
-        }
-        
-        .subtitle {
-            font-size: 14px;
-            color: #6b7280;
-            margin-bottom: 24px;
-        }
-        
-        .section {
-            margin-bottom: 24px;
-            padding: 16px;
-            background: #f9fafb;
-            border-radius: 8px;
-            border: 1px solid #e5e7eb;
-        }
-        
-        .section-title {
-            font-size: 13px;
-            font-weight: 600;
-            color: #1f2937;
-            margin-bottom: 12px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        
-        .form-group {
-            margin-bottom: 12px;
-        }
-        
-        label {
-            display: block;
-            font-size: 13px;
-            color: #4b5563;
-            margin-bottom: 6px;
-            font-weight: 500;
-        }
-        
-        input[type="text"],
-        input[type="tel"],
-        input[type="email"],
-        input[type="number"],
-        textarea {
-            width: 100%;
-            font-size: 14px;
-            padding: 8px 10px;
-            border: 1px solid #d1d5db;
-            border-radius: 6px;
-            font-family: inherit;
-        }
-        
-        input[type="text"]:focus,
-        input[type="tel"]:focus,
-        input[type="email"]:focus,
-        input[type="number"]:focus,
-        textarea:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-        }
-        
-        textarea {
-            resize: vertical;
-            height: 80px;
-        }
-        
-        .checkbox-group,
-        .radio-group {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-        
-        .checkbox-item,
-        .radio-item {
+            padding: 22px 28px;
             display: flex;
             align-items: center;
-            font-size: 13px;
-        }
-        
-        input[type="checkbox"],
-        input[type="radio"] {
-            margin-right: 8px;
-            cursor: pointer;
-            width: 16px;
-            height: 16px;
-        }
-        
-        .checkbox-label,
-        .radio-label {
-            flex: 1;
-            color: #1f2937;
-            cursor: pointer;
-        }
-        
-        .price {
-            font-size: 12px;
-            color: #6b7280;
-            margin-left: auto;
-        }
-        
-        .total-section {
-            padding-top: 12px;
-            border-top: 1px solid #d1d5db;
-            display: flex;
             justify-content: space-between;
-            align-items: center;
+            margin-bottom: 20px;
         }
-        
-        .total-label {
-            font-size: 14px;
-            font-weight: 600;
-            color: #1f2937;
+        .logo-title { color: #fff; font-size: 22px; font-weight: 300; letter-spacing: 2px; line-height: 1.1; }
+        .logo-title span { display: block; font-weight: 600; }
+        .logo-line { width: 100%; height: 1px; background: #4a90d9; margin: 6px 0; }
+        .logo-tag { font-size: 9px; color: #888; letter-spacing: 2px; text-transform: uppercase; }
+        .header-right { text-align: right; }
+        .header-right p { font-size: 11px; color: #666; line-height: 1.7; }
+        .header-right strong { color: #aaa; font-weight: 400; }
+        .badge-locations { display: flex; gap: 6px; margin-top: 6px; justify-content: flex-end; }
+        .badge { font-size: 10px; padding: 3px 10px; border-radius: 99px; background: #111; border: 0.5px solid #333; color: #777; }
+
+        .page-title { font-size: 26px; font-weight: 600; color: #f9fafb; letter-spacing: -0.5px; margin-bottom: 4px; }
+        .page-sub { font-size: 13px; color: #9ca3af; margin-bottom: 18px; }
+
+        .card {
+            background: #1c1c1e;
+            border: 0.5px solid #2d2d2f;
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin-bottom: 16px;
         }
-        
-        .total-amount {
-            font-size: 28px;
-            font-weight: 600;
-            color: #667eea;
+
+        .area-row { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+        .area-row label { font-size: 14px; color: #d1d5db; flex: 1; }
+        .area-input {
+            width: 100px; padding: 8px 12px;
+            border: 0.5px solid #3f3f46; border-radius: 99px;
+            font-size: 15px; font-weight: 600; color: #f9fafb;
+            background: #27272a; text-align: center; font-family: inherit;
         }
-        
-        .form-section {
-            margin-top: 24px;
+        .area-input:focus { outline: none; border-color: #4a90d9; }
+
+        .group-label {
+            font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+            text-transform: uppercase; color: #6b7280;
+            margin-bottom: 10px; margin-top: 18px;
         }
-        
-        button {
-            width: 100%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            padding: 12px 16px;
-            border-radius: 6px;
-            font-size: 14px;
-            font-weight: 600;
+
+        .pill-group { display: flex; flex-direction: column; gap: 8px; }
+
+        .pill-option {
+            border-radius: 12px;
+            border: 0.5px solid #2d2d2f;
+            background: #27272a;
+            overflow: hidden;
+            transition: border-color 0.15s;
             cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-            margin-top: 16px;
         }
-        
-        button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        .pill-option.selected { border-color: #4a90d9; background: #1e2a38; }
+        .pill-option input { display: none; }
+
+        .pill-top { display: flex; align-items: center; gap: 12px; padding: 10px 14px; }
+        .pill-dot {
+            width: 18px; height: 18px; border-radius: 50%;
+            border: 1.5px solid #4b5563;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0; transition: all 0.15s;
         }
-        
-        button:active {
-            transform: translateY(0);
+        .pill-option.selected .pill-dot { background: #4a90d9; border-color: #4a90d9; }
+        .pill-dot-inner { width: 7px; height: 7px; border-radius: 50%; background: #fff; opacity: 0; transition: opacity 0.15s; }
+        .pill-option.selected .pill-dot-inner { opacity: 1; }
+
+        .pill-name { flex: 1; font-size: 13px; color: #e5e7eb; }
+        .pill-price { font-size: 12px; color: #6b7280; text-align: right; }
+        .pill-price em { font-style: normal; font-size: 10px; display: block; color: #6b7280; }
+
+        .pill-detail { display: none; padding: 0 14px 14px 44px; }
+        .pill-option.selected .pill-detail { display: block; }
+
+        .detail-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .detail-col {
+            background: #1a1a1c; border-radius: 8px;
+            padding: 10px 12px; border: 0.5px solid #2d2d2f;
         }
-        
+        .detail-col.active { background: #172033; border-color: #1d4ed8; }
+        .detail-col-title {
+            font-size: 9px; font-weight: 700; letter-spacing: 1.5px;
+            text-transform: uppercase; color: #6b7280; margin-bottom: 8px;
+        }
+        .detail-col.active .detail-col-title { color: #60a5fa; }
+        .detail-item { font-size: 11px; color: #9ca3af; line-height: 1.7; display: flex; gap: 6px; }
+        .detail-item::before { content: "—"; color: #4b5563; flex-shrink: 0; }
+
+        .detail-simple { font-size: 11px; color: #9ca3af; line-height: 1.8; }
+        .detail-simple span { display: flex; gap: 6px; }
+        .detail-simple span::before { content: "—"; color: #4b5563; }
+
+        .total-bar {
+            display: flex; align-items: baseline; justify-content: space-between;
+            margin-top: 20px; padding-top: 16px;
+            border-top: 0.5px solid #2d2d2f;
+        }
+        .total-label { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #6b7280; }
+        .total-amount { font-size: 34px; font-weight: 300; color: #f9fafb; letter-spacing: -1px; }
+
+        .fields { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px; }
+        .field-full { grid-column: 1 / -1; }
+        .field label {
+            display: block; font-size: 10px; font-weight: 700;
+            letter-spacing: 1px; text-transform: uppercase;
+            color: #6b7280; margin-bottom: 5px;
+        }
+        .field input, .field textarea {
+            width: 100%; padding: 9px 14px;
+            border: 0.5px solid #3f3f46; border-radius: 99px;
+            font-size: 13px; color: #f9fafb;
+            background: #27272a; font-family: inherit;
+        }
+        .field input:focus, .field textarea:focus { outline: none; border-color: #4a90d9; }
+        .field textarea { border-radius: 12px; height: 70px; resize: vertical; }
+        .field input::placeholder, .field textarea::placeholder { color: #6b7280; }
+
+        .btn-wa {
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            width: 100%; padding: 13px;
+            background: #25d366; color: #fff;
+            border: none; border-radius: 99px;
+            font-size: 14px; font-weight: 600;
+            cursor: pointer; margin-top: 16px;
+            font-family: inherit;
+            transition: opacity 0.15s, transform 0.1s;
+        }
+        .btn-wa:hover { opacity: 0.9; transform: translateY(-1px); }
+        .btn-wa:active { transform: translateY(0); }
+
         .mensaje {
-            font-size: 13px;
-            text-align: center;
-            margin-top: 12px;
-            padding: 10px;
-            border-radius: 6px;
-            display: none;
+            font-size: 13px; text-align: center; margin-top: 12px;
+            padding: 10px; border-radius: 8px; display: none;
         }
-        
-        .mensaje.success {
-            display: block;
-            background: #dcfce7;
-            color: #16a34a;
-            border: 1px solid #bbf7d0;
-        }
-        
-        .mensaje.error {
-            display: block;
-            background: #fee2e2;
-            color: #dc2626;
-            border: 1px solid #fecaca;
-        }
-        
-        @media (max-width: 640px) {
-            .container {
-                padding: 20px;
-            }
-            
-            h1 {
-                font-size: 20px;
-            }
+        .mensaje.error { display: block; background: #3f1212; color: #f87171; border: 1px solid #7f1d1d; }
+
+        @media (max-width: 600px) {
+            .header { flex-direction: column; gap: 16px; text-align: center; }
+            .header-right { text-align: center; }
+            .badge-locations { justify-content: center; }
+            .fields { grid-template-columns: 1fr; }
+            .field-full { grid-column: 1; }
+            .detail-cols { grid-template-columns: 1fr; }
+            .page-title { font-size: 22px; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Solicitud de Presupuesto</h1>
-        <p class="subtitle">Calcula y comparte tu cotización</p>
-        
-        <form id="cotizationForm">
-            <!-- CALCULADORA -->
-            <div class="section">
-                <div class="section-title">Presupuesto</div>
-                
-                <div class="form-group">
-                    <label>Superficie (m²) *</label>
-                    <input type="number" id="area" min="0" step="0.1" value="100" required>
-                </div>
-                
-                <!-- DISEÑO -->
-                <div class="form-group">
-                    <label style="font-weight: 600; font-size: 12px; text-transform: uppercase;">Diseño</label>
-                    <div class="checkbox-group">
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="bosquejo" checked>
-                            <span class="checkbox-label">Bosquejo</span>
-                            <span class="price">$18/m²</span>
-                        </div>
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="idea" checked>
-                            <span class="checkbox-label">Idea de proyecto</span>
-                            <span class="price">$22/m²</span>
-                        </div>
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="ejecutivo" checked>
-                            <span class="checkbox-label">Proyecto ejecutivo</span>
-                            <span class="price">$800</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- CONSTRUCCIÓN -->
-                <div class="form-group">
-                    <label style="font-weight: 600; font-size: 12px; text-transform: uppercase;">Construcción Steel Frame</label>
-                    <div class="radio-group">
-                        <div class="radio-item">
-                            <input type="radio" name="construccion" value="none" checked>
-                            <span class="radio-label">Sin construcción</span>
-                        </div>
-                        <div class="radio-item">
-                            <input type="radio" name="construccion" value="clasico">
-                            <span class="radio-label">Steel frame clásico</span>
-                            <span class="price">$1,250/m²</span>
-                        </div>
-                        <div class="radio-item">
-                            <input type="radio" name="construccion" value="modena">
-                            <span class="radio-label">Modena DVH (premium)</span>
-                            <span class="price">$1,500/m²</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="total-section">
-                    <span class="total-label">Total presupuesto</span>
-                    <span class="total-amount" id="total">$4,800</span>
-                </div>
+<div class="wrap">
+
+    <div class="header">
+        <div>
+            <div class="logo-title">Sketch<span>Build</span></div>
+            <div class="logo-line"></div>
+            <div class="logo-tag">Arquitectura · Diseño · Construcción</div>
+        </div>
+        <div class="header-right">
+            <p><strong>Buenos Aires</strong><br>CABA, Argentina</p>
+            <p style="margin-top:4px"><strong>Córdoba</strong><br>Córdoba Capital</p>
+            <div class="badge-locations">
+                <span class="badge">CABA</span>
+                <span class="badge">CBA</span>
             </div>
-            
-            <!-- DATOS DE CONTACTO -->
-            <div class="form-section">
-                <div class="form-group">
-                    <label>Nombre completo *</label>
-                    <input type="text" id="nombre" required>
-                </div>
-                
-                <div class="form-group">
-                    <label>Teléfono/WhatsApp *</label>
-                    <input type="tel" id="telefono" placeholder="+54 9 11 2345-6789" required>
-                </div>
-                
-                <div class="form-group">
-                    <label>Localidad/Provincia *</label>
-                    <input type="text" id="localidad" placeholder="Buenos Aires" required>
-                </div>
-                
-                <div class="form-group">
-                    <label>Email</label>
-                    <input type="email" id="email">
-                </div>
-                
-                <div class="form-group">
-                    <label>Observaciones</label>
-                    <textarea id="observaciones" placeholder="Comentarios adicionales..."></textarea>
-                </div>
-                
-                <button type="submit">Enviar Cotización</button>
-                <div class="mensaje" id="mensaje"></div>
-            </div>
-        </form>
+        </div>
     </div>
-    
-    <script>
-        const PRICES = {
-            bosquejo: 18,
-            idea: 22,
-            ejecutivo: 800,
-            clasico: 1250,
-            modena: 1500
-        };
-        
-        const areaInput = document.getElementById('area');
-        const bosquejoCheck = document.getElementById('bosquejo');
-        const ideaCheck = document.getElementById('idea');
-        const ejecutivoCheck = document.getElementById('ejecutivo');
-        const construccionRadios = document.querySelectorAll('input[name="construccion"]');
-        const totalElement = document.getElementById('total');
-        const form = document.getElementById('cotizationForm');
-        const mensajeDiv = document.getElementById('mensaje');
-        
-        function formatCurrency(value) {
-            return '$' + Math.round(value * 100) / 100;
-        }
-        
-        function updateCalculation() {
-            const area = parseFloat(areaInput.value) || 0;
-            let total = 0;
-            
-            if (bosquejoCheck.checked) total += area * PRICES.bosquejo;
-            if (ideaCheck.checked) total += area * PRICES.idea;
-            if (ejecutivoCheck.checked) total += PRICES.ejecutivo;
-            
-            const selectedConstruccion = document.querySelector('input[name="construccion"]:checked').value;
-            if (selectedConstruccion === 'clasico') total += area * PRICES.clasico;
-            else if (selectedConstruccion === 'modena') total += area * PRICES.modena;
-            
-            totalElement.textContent = formatCurrency(total);
-        }
-        
-        function getDetalles() {
-            const area = parseFloat(areaInput.value) || 0;
-            let servicios = [];
-            
-            if (bosquejoCheck.checked) servicios.push(`Bosquejo: $${(area * PRICES.bosquejo).toFixed(2)}`);
-            if (ideaCheck.checked) servicios.push(`Idea proyecto: $${(area * PRICES.idea).toFixed(2)}`);
-            if (ejecutivoCheck.checked) servicios.push(`Proyecto ejecutivo: $${PRICES.ejecutivo}`);
-            
-            const selectedConstruccion = document.querySelector('input[name="construccion"]:checked').value;
-            if (selectedConstruccion === 'clasico') servicios.push(`Steel frame clásico: $${(area * PRICES.clasico).toFixed(2)}`);
-            else if (selectedConstruccion === 'modena') servicios.push(`Modena DVH: $${(area * PRICES.modena).toFixed(2)}`);
-            
-            return servicios.join('\n');
-        }
-        
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            const nombre = document.getElementById('nombre').value;
-            const telefono = document.getElementById('telefono').value;
-            const localidad = document.getElementById('localidad').value;
-            const email = document.getElementById('email').value;
-            const observaciones = document.getElementById('observaciones').value;
-            const total = totalElement.textContent;
-            const detalles = getDetalles();
-            const fecha = new Date().toLocaleDateString('es-AR');
-            
-            const datos = {
-                timestamp: new Date().toISOString(),
-                fecha,
-                nombre,
-                telefono,
-                localidad,
-                email,
-                area: areaInput.value,
-                servicios: detalles,
-                total,
-                observaciones
-            };
-            
-            console.log('Datos del formulario:', datos);
-            
-            // Aquí irá la integración con Google Sheets y WhatsApp
-            mensajeDiv.textContent = '✓ Presupuesto registrado. Pronto te contactaremos.';
-            mensajeDiv.className = 'mensaje success';
-            
-            form.reset();
-            updateCalculation();
-            
-            setTimeout(() => {
-                mensajeDiv.className = 'mensaje';
-            }, 4000);
+
+    <p class="page-title">Calculadora de presupuesto</p>
+    <p class="page-sub">Seleccioná los servicios y completá tus datos para recibir tu cotización.</p>
+
+    <div class="card">
+        <div class="area-row">
+            <label>Superficie (m²)</label>
+            <input class="area-input" type="number" value="100" id="area" min="0" step="1">
+        </div>
+
+        <div class="group-label">Diseño</div>
+        <div class="pill-group">
+
+            <label class="pill-option selected" id="pill-bosquejo">
+                <input type="checkbox" checked>
+                <div class="pill-top">
+                    <div class="pill-dot"><div class="pill-dot-inner"></div></div>
+                    <span class="pill-name">Bosquejo</span>
+                    <span class="pill-price">$18/m²</span>
+                </div>
+                <div class="pill-detail">
+                    <div class="detail-simple">
+                        <span>Croquis preliminar de la propuesta</span>
+                        <span>Volumetría general y distribución básica</span>
+                        <span>Punto de partida para el anteproyecto</span>
+                    </div>
+                </div>
+            </label>
+
+            <label class="pill-option selected" id="pill-idea">
+                <input type="checkbox" checked>
+                <div class="pill-top">
+                    <div class="pill-dot"><div class="pill-dot-inner"></div></div>
+                    <span class="pill-name">Idea de proyecto</span>
+                    <span class="pill-price">$22/m²</span>
+                </div>
+                <div class="pill-detail">
+                    <div class="detail-simple">
+                        <span>Planta, cortes y vistas generales</span>
+                        <span>Definición de materiales y estética</span>
+                        <span>Memoria descriptiva básica</span>
+                    </div>
+                </div>
+            </label>
+
+            <label class="pill-option selected" id="pill-ejecutivo">
+                <input type="checkbox" checked>
+                <div class="pill-top">
+                    <div class="pill-dot"><div class="pill-dot-inner"></div></div>
+                    <span class="pill-name">Proyecto ejecutivo</span>
+                    <span class="pill-price">desde $500 USD<em>precio fijo</em></span>
+                </div>
+                <div class="pill-detail">
+                    <div class="detail-simple">
+                        <span>Planos completos para obra (estructura, instalaciones, carpintería)</span>
+                        <span>Documentación técnica y legales</span>
+                        <span>Precio fijo · Se confirma en anteproyecto</span>
+                    </div>
+                </div>
+            </label>
+
+        </div>
+
+        <div class="group-label" style="margin-top:20px">Construcción Steel Frame</div>
+        <div class="pill-group">
+
+            <label class="pill-option selected" id="pill-none">
+                <input type="radio" name="con" value="none" checked>
+                <div class="pill-top">
+                    <div class="pill-dot"><div class="pill-dot-inner"></div></div>
+                    <span class="pill-name">Sin construcción</span>
+                </div>
+            </label>
+
+            <label class="pill-option" id="pill-clasico">
+                <input type="radio" name="con" value="clasico">
+                <div class="pill-top">
+                    <div class="pill-dot"><div class="pill-dot-inner"></div></div>
+                    <span class="pill-name">Steel Frame Clásico</span>
+                    <span class="pill-price">$1,250/m²</span>
+                </div>
+                <div class="pill-detail">
+                    <div class="detail-cols">
+                        <div class="detail-col">
+                            <div class="detail-col-title">Aberturas</div>
+                            <div class="detail-item">Ventanas Modena · Aluar</div>
+                            <div class="detail-item">Vidrio simple · Corrediza</div>
+                            <div class="detail-item">DVH orientación sur incluido</div>
+                        </div>
+                        <div class="detail-col">
+                            <div class="detail-col-title">Terminaciones</div>
+                            <div class="detail-item">Porcelanato Selectile 2da cal · 60×60</div>
+                            <div class="detail-item">Sanitarios Roca Monaco</div>
+                            <div class="detail-item">Grifería FV Arizona · Cromo</div>
+                        </div>
+                        <div class="detail-col">
+                            <div class="detail-col-title">Revestimiento exterior</div>
+                            <div class="detail-item">Tarquini Raya 2 · hasta 2 colores</div>
+                            <div class="detail-item">Textura fina, mediana o gruesa</div>
+                        </div>
+                        <div class="detail-col">
+                            <div class="detail-col-title">Mobiliario</div>
+                            <div class="detail-item">Melamina MDF 18mm · FAPLAC</div>
+                            <div class="detail-item">Placares y bajo mesada incluidos</div>
+                        </div>
+                    </div>
+                </div>
+            </label>
+
+            <label class="pill-option" id="pill-premium">
+                <input type="radio" name="con" value="modena">
+                <div class="pill-top">
+                    <div class="pill-dot"><div class="pill-dot-inner"></div></div>
+                    <span class="pill-name">Steel Frame Premium</span>
+                    <span class="pill-price">$1,500/m²</span>
+                </div>
+                <div class="pill-detail">
+                    <div class="detail-cols">
+                        <div class="detail-col active">
+                            <div class="detail-col-title">Aberturas superiores</div>
+                            <div class="detail-item">Ventanas Offnung · Línea Superior</div>
+                            <div class="detail-item">DVH de fábrica · toda la línea</div>
+                            <div class="detail-item">Herrajes importados acero inox</div>
+                            <div class="detail-item">Reducción puente térmico certificada</div>
+                        </div>
+                        <div class="detail-col active">
+                            <div class="detail-col-title">Terminaciones premium</div>
+                            <div class="detail-item">Porcelanato Cerro Negro 1ra · 59×59</div>
+                            <div class="detail-item">Sanitarios Ferrum Andina · 10 años gtía</div>
+                            <div class="detail-item">Grifería FV Epuyén · Negro mate / Brass</div>
+                        </div>
+                        <div class="detail-col active">
+                            <div class="detail-col-title">Revestimiento exterior</div>
+                            <div class="detail-item">Siding Cedral (Eternit) · símil madera</div>
+                            <div class="detail-item">Revestimiento símil piedra a elección</div>
+                        </div>
+                        <div class="detail-col active">
+                            <div class="detail-col-title">Mobiliario</div>
+                            <div class="detail-item">MDF lacado / Madera maciza · Dimario</div>
+                            <div class="detail-item">Herrajes premium · diseño a medida</div>
+                        </div>
+                    </div>
+                </div>
+            </label>
+
+        </div>
+
+        <div class="total-bar">
+            <span class="total-label">Total estimado</span>
+            <span class="total-amount" id="total">$4.800</span>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="group-label" style="margin-top:0">Tus datos</div>
+        <div class="fields">
+            <div class="field field-full">
+                <label>Nombre completo</label>
+                <input type="text" id="nombre" placeholder="Juan García">
+            </div>
+            <div class="field">
+                <label>Teléfono / WhatsApp</label>
+                <input type="tel" id="telefono" placeholder="+54 9 11 2345-6789">
+            </div>
+            <div class="field">
+                <label>Localidad / Provincia</label>
+                <input type="text" id="localidad" placeholder="Buenos Aires">
+            </div>
+            <div class="field field-full">
+                <label>Email</label>
+                <input type="email" id="email" placeholder="juan@email.com">
+            </div>
+            <div class="field field-full">
+                <label>Observaciones</label>
+                <textarea id="obs" placeholder="Comentarios adicionales..."></textarea>
+            </div>
+        </div>
+        <button class="btn-wa" id="btnWA">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+            Enviar cotización por WhatsApp
+        </button>
+        <div class="mensaje" id="mensaje"></div>
+    </div>
+
+</div>
+<script>
+    const radioPills = ['pill-none', 'pill-clasico', 'pill-premium'];
+
+    ['pill-bosquejo', 'pill-idea', 'pill-ejecutivo'].forEach(id => {
+        const pill = document.getElementById(id);
+        const input = pill.querySelector('input[type="checkbox"]');
+        pill.addEventListener('click', () => {
+            input.checked = !input.checked;
+            pill.classList.toggle('selected', input.checked);
+            calc();
         });
-        
-        areaInput.addEventListener('input', updateCalculation);
-        bosquejoCheck.addEventListener('change', updateCalculation);
-        ideaCheck.addEventListener('change', updateCalculation);
-        ejecutivoCheck.addEventListener('change', updateCalculation);
-        construccionRadios.forEach(radio => radio.addEventListener('change', updateCalculation));
-        
-        updateCalculation();
-    </script>
+    });
+
+    radioPills.forEach(id => {
+        const pill = document.getElementById(id);
+        const input = pill.querySelector('input[type="radio"]');
+        pill.addEventListener('click', () => {
+            radioPills.forEach(rid => document.getElementById(rid).classList.remove('selected'));
+            pill.classList.add('selected');
+            input.checked = true;
+            calc();
+        });
+    });
+
+    document.getElementById('area').addEventListener('input', calc);
+
+    function calc() {
+        const area = parseFloat(document.getElementById('area').value) || 0;
+        let total = 0;
+        if (document.getElementById('pill-bosquejo').classList.contains('selected')) total += area * 18;
+        if (document.getElementById('pill-idea').classList.contains('selected')) total += area * 22;
+        if (document.getElementById('pill-ejecutivo').classList.contains('selected')) total += 500;
+        const con = document.querySelector('input[name="con"]:checked').value;
+        if (con === 'clasico') total += area * 1250;
+        if (con === 'modena') total += area * 1500;
+        document.getElementById('total').textContent = '$' + Math.round(total).toLocaleString('es-AR');
+    }
+
+    document.getElementById('btnWA').addEventListener('click', () => {
+        const nombre = document.getElementById('nombre').value.trim();
+        const telefono = document.getElementById('telefono').value.trim();
+        const localidad = document.getElementById('localidad').value.trim();
+        if (!nombre || !telefono || !localidad) {
+            const m = document.getElementById('mensaje');
+            m.textContent = 'Por favor completá nombre, teléfono y localidad.';
+            m.className = 'mensaje error';
+            setTimeout(() => m.className = 'mensaje', 3000);
+            return;
+        }
+        const area = document.getElementById('area').value;
+        const email = document.getElementById('email').value || '-';
+        const obs = document.getElementById('obs').value || '-';
+        const total = document.getElementById('total').textContent;
+        const items = [];
+        if (document.getElementById('pill-bosquejo').classList.contains('selected')) items.push('• Bosquejo ($18/m²)');
+        if (document.getElementById('pill-idea').classList.contains('selected')) items.push('• Idea de proyecto ($22/m²)');
+        if (document.getElementById('pill-ejecutivo').classList.contains('selected')) items.push('• Proyecto ejecutivo (desde $500 USD fijo)');
+        const con = document.querySelector('input[name="con"]:checked').value;
+        if (con === 'clasico') items.push('• Steel Frame Clásico ($1.250/m²)');
+        if (con === 'modena') items.push('• Steel Frame Premium ($1.500/m²)');
+        const msg = `*Nueva solicitud de presupuesto – Sketch Build*\n\n👤 *Nombre:* ${nombre}\n📱 *Teléfono:* ${telefono}\n📍 *Localidad:* ${localidad}\n📧 *Email:* ${email}\n📐 *Superficie:* ${area} m²\n\n*Servicios seleccionados:*\n${items.join('\n')}\n\n💰 *Total estimado: ${total}*\n\n📝 *Observaciones:* ${obs}`;
+        window.open('https://wa.me/5491130983777?text=' + encodeURIComponent(msg), '_blank');
+    });
+
+    calc();
+</script>
 </body>
 </html>

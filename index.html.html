@@ -226,7 +226,7 @@
                 <div class="pill-top">
                     <div class="pill-dot"><div class="pill-dot-inner"></div></div>
                     <span class="pill-name">Proyecto ejecutivo</span>
-                    <span class="pill-price">desde $500 USD<em>precio fijo</em></span>
+                    <span class="pill-price">desde $800 USD<em>precio fijo</em></span>
                 </div>
                 <div class="pill-detail">
                     <div class="detail-simple">
@@ -371,7 +371,7 @@
         var total = 0;
         if (checks.bosquejo) total += area * 18;
         if (checks.idea) total += area * 22;
-        if (checks.ejecutivo) total += 500;
+        if (checks.ejecutivo) total += 800;
         if (selectedRadio === 'clasico') total += area * 1250;
         if (selectedRadio === 'modena') total += area * 1500;
         document.getElementById('total').textContent = 'US$ ' + Math.round(total).toLocaleString('es-AR');
@@ -419,7 +419,7 @@
         var items = [];
         if (checks.bosquejo) items.push('• Bosquejo ($18/m²)');
         if (checks.idea) items.push('• Idea de proyecto ($22/m²)');
-        if (checks.ejecutivo) items.push('• Proyecto ejecutivo (desde $500 USD fijo)');
+        if (checks.ejecutivo) items.push('• Proyecto ejecutivo (desde $800 USD fijo)');
         if (selectedRadio === 'clasico') items.push('• Steel Frame Clásico ($1.250/m²)');
         if (selectedRadio === 'modena') items.push('• Steel Frame Premium ($1.500/m²)');
         var msg = '*Nueva solicitud de presupuesto – Sketch Build*\n\n'

@@ -4,16 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora de Presupuesto · Sketch Build</title>
-
-    <!-- Open Graph para Instagram / redes sociales -->
     <meta property="og:title" content="Calculadora de Presupuesto · Sketch Build">
     <meta property="og:description" content="Calculá tu presupuesto de arquitectura, diseño y construcción Steel Frame. Cobertura en toda la República Argentina.">
     <meta property="og:type" content="website">
     <meta name="theme-color" content="#000000">
 
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+    <!-- PWA: nombre y datos de la app al agregar a inicio (reemplaza la URL/vercel.app) -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Sketch Build">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Sketch Build">
 
+    <!-- Icono para pantalla de inicio (iOS) -->
+    <link rel="apple-touch-icon" href="icon-180.png">
+    <!-- Favicon / icono estándar -->
+    <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="icon-32.png">
+
+    <style>
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
             background: linear-gradient(135deg, #111111 0%, #1a1a1a 100%);
@@ -23,7 +35,6 @@
             align-items: flex-start;
             justify-content: center;
         }
-
         .wrap { max-width: 680px; width: 100%; }
 
         .header {
@@ -40,20 +51,14 @@
         .logo-line { width: 100%; height: 1px; background: #4a90d9; margin: 6px 0; }
         .logo-tag { font-size: 9px; color: #888; letter-spacing: 2px; text-transform: uppercase; }
         .header-right { text-align: right; }
-        .header-right p { font-size: 12px; color: #aaa; line-height: 1.5; font-weight: 300; letter-spacing: 0.3px; }
+        .header-right p { font-size: 12px; color: #aaa; line-height: 1.5; font-weight: 300; }
         .badge-locations { display: flex; gap: 6px; margin-top: 8px; justify-content: flex-end; }
         .badge { font-size: 10px; padding: 3px 10px; border-radius: 99px; background: #111; border: 0.5px solid #333; color: #777; }
 
         .page-title { font-size: 26px; font-weight: 600; color: #f9fafb; letter-spacing: -0.5px; margin-bottom: 4px; }
         .page-sub { font-size: 13px; color: #9ca3af; margin-bottom: 18px; }
 
-        .card {
-            background: #1c1c1e;
-            border: 0.5px solid #2d2d2f;
-            border-radius: 12px;
-            padding: 20px 24px;
-            margin-bottom: 16px;
-        }
+        .card { background: #1c1c1e; border: 0.5px solid #2d2d2f; border-radius: 12px; padding: 20px 24px; margin-bottom: 16px; }
 
         .area-row { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
         .area-row label { font-size: 14px; color: #d1d5db; flex: 1; }
@@ -78,11 +83,11 @@
             border: 0.5px solid #2d2d2f;
             background: #27272a;
             overflow: hidden;
-            transition: border-color 0.15s;
+            transition: border-color 0.15s, background 0.15s;
             cursor: pointer;
+            user-select: none;
         }
         .pill-option.selected { border-color: #4a90d9; background: #1e2a38; }
-        .pill-option input { display: none; }
 
         .pill-top { display: flex; align-items: center; gap: 12px; padding: 10px 14px; }
         .pill-dot {
@@ -103,15 +108,9 @@
         .pill-option.selected .pill-detail { display: block; }
 
         .detail-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .detail-col {
-            background: #1a1a1c; border-radius: 8px;
-            padding: 10px 12px; border: 0.5px solid #2d2d2f;
-        }
+        .detail-col { background: #1a1a1c; border-radius: 8px; padding: 10px 12px; border: 0.5px solid #2d2d2f; }
         .detail-col.active { background: #172033; border-color: #1d4ed8; }
-        .detail-col-title {
-            font-size: 9px; font-weight: 700; letter-spacing: 1.5px;
-            text-transform: uppercase; color: #6b7280; margin-bottom: 8px;
-        }
+        .detail-col-title { font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #6b7280; margin-bottom: 8px; }
         .detail-col.active .detail-col-title { color: #60a5fa; }
         .detail-item { font-size: 11px; color: #9ca3af; line-height: 1.7; display: flex; gap: 6px; }
         .detail-item::before { content: "—"; color: #4b5563; flex-shrink: 0; }
@@ -120,21 +119,13 @@
         .detail-simple span { display: flex; gap: 6px; }
         .detail-simple span::before { content: "—"; color: #4b5563; }
 
-        .total-bar {
-            display: flex; align-items: baseline; justify-content: space-between;
-            margin-top: 20px; padding-top: 16px;
-            border-top: 0.5px solid #2d2d2f;
-        }
+        .total-bar { display: flex; align-items: baseline; justify-content: space-between; margin-top: 20px; padding-top: 16px; border-top: 0.5px solid #2d2d2f; }
         .total-label { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #6b7280; }
         .total-amount { font-size: 34px; font-weight: 300; color: #f9fafb; letter-spacing: -1px; }
 
         .fields { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px; }
         .field-full { grid-column: 1 / -1; }
-        .field label {
-            display: block; font-size: 10px; font-weight: 700;
-            letter-spacing: 1px; text-transform: uppercase;
-            color: #6b7280; margin-bottom: 5px;
-        }
+        .field label { display: block; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: #6b7280; margin-bottom: 5px; }
         .field input, .field textarea {
             width: 100%; padding: 9px 14px;
             border: 0.5px solid #3f3f46; border-radius: 99px;
@@ -158,10 +149,7 @@
         .btn-wa:hover { opacity: 0.9; transform: translateY(-1px); }
         .btn-wa:active { transform: translateY(0); }
 
-        .mensaje {
-            font-size: 13px; text-align: center; margin-top: 12px;
-            padding: 10px; border-radius: 8px; display: none;
-        }
+        .mensaje { font-size: 13px; text-align: center; margin-top: 12px; padding: 10px; border-radius: 8px; display: none; }
         .mensaje.error { display: block; background: #3f1212; color: #f87171; border: 1px solid #7f1d1d; }
 
         @media (max-width: 600px) {
@@ -197,15 +185,14 @@
 
     <div class="card">
         <div class="area-row">
-            <label>Superficie (m²)</label>
+            <label for="area">Superficie (m²)</label>
             <input class="area-input" type="number" value="100" id="area" min="0" step="1">
         </div>
 
         <div class="group-label">Diseño</div>
         <div class="pill-group">
 
-            <label class="pill-option selected" id="pill-bosquejo">
-                <input type="checkbox" checked>
+            <div class="pill-option selected" id="pill-bosquejo" data-type="check" data-key="bosquejo">
                 <div class="pill-top">
                     <div class="pill-dot"><div class="pill-dot-inner"></div></div>
                     <span class="pill-name">Bosquejo</span>
@@ -218,10 +205,9 @@
                         <span>Punto de partida para el anteproyecto</span>
                     </div>
                 </div>
-            </label>
+            </div>
 
-            <label class="pill-option selected" id="pill-idea">
-                <input type="checkbox" checked>
+            <div class="pill-option selected" id="pill-idea" data-type="check" data-key="idea">
                 <div class="pill-top">
                     <div class="pill-dot"><div class="pill-dot-inner"></div></div>
                     <span class="pill-name">Idea de proyecto</span>
@@ -234,10 +220,9 @@
                         <span>Memoria descriptiva básica</span>
                     </div>
                 </div>
-            </label>
+            </div>
 
-            <label class="pill-option selected" id="pill-ejecutivo">
-                <input type="checkbox" checked>
+            <div class="pill-option selected" id="pill-ejecutivo" data-type="check" data-key="ejecutivo">
                 <div class="pill-top">
                     <div class="pill-dot"><div class="pill-dot-inner"></div></div>
                     <span class="pill-name">Proyecto ejecutivo</span>
@@ -250,23 +235,21 @@
                         <span>Precio fijo · Se confirma en anteproyecto</span>
                     </div>
                 </div>
-            </label>
+            </div>
 
         </div>
 
         <div class="group-label" style="margin-top:20px">Construcción Steel Frame</div>
-        <div class="pill-group">
+        <div class="pill-group" id="radio-group">
 
-            <label class="pill-option selected" id="pill-none">
-                <input type="radio" name="con" value="none" checked>
+            <div class="pill-option selected" id="pill-none" data-type="radio" data-key="none">
                 <div class="pill-top">
                     <div class="pill-dot"><div class="pill-dot-inner"></div></div>
                     <span class="pill-name">Sin construcción</span>
                 </div>
-            </label>
+            </div>
 
-            <label class="pill-option" id="pill-clasico">
-                <input type="radio" name="con" value="clasico">
+            <div class="pill-option" id="pill-clasico" data-type="radio" data-key="clasico">
                 <div class="pill-top">
                     <div class="pill-dot"><div class="pill-dot-inner"></div></div>
                     <span class="pill-name">Steel Frame Clásico</span>
@@ -298,10 +281,9 @@
                         </div>
                     </div>
                 </div>
-            </label>
+            </div>
 
-            <label class="pill-option" id="pill-premium">
-                <input type="radio" name="con" value="modena">
+            <div class="pill-option" id="pill-premium" data-type="radio" data-key="modena">
                 <div class="pill-top">
                     <div class="pill-dot"><div class="pill-dot-inner"></div></div>
                     <span class="pill-name">Steel Frame Premium</span>
@@ -334,13 +316,13 @@
                         </div>
                     </div>
                 </div>
-            </label>
+            </div>
 
         </div>
 
         <div class="total-bar">
-            <span class="total-label">Total estimado</span>
-            <span class="total-amount" id="total">$4.800</span>
+            <span class="total-label">Total (USD)</span>
+            <span class="total-amount" id="total">US$ 4.800</span>
         </div>
     </div>
 
@@ -348,23 +330,23 @@
         <div class="group-label" style="margin-top:0">Tus datos</div>
         <div class="fields">
             <div class="field field-full">
-                <label>Nombre completo</label>
+                <label for="nombre">Nombre completo</label>
                 <input type="text" id="nombre" placeholder="Juan García">
             </div>
             <div class="field">
-                <label>Teléfono / WhatsApp</label>
+                <label for="telefono">Teléfono / WhatsApp</label>
                 <input type="tel" id="telefono" placeholder="+54 9 11 2345-6789">
             </div>
             <div class="field">
-                <label>Localidad / Provincia</label>
+                <label for="localidad">Localidad / Provincia</label>
                 <input type="text" id="localidad" placeholder="Buenos Aires">
             </div>
             <div class="field field-full">
-                <label>Email</label>
+                <label for="email">Email</label>
                 <input type="email" id="email" placeholder="juan@email.com">
             </div>
             <div class="field field-full">
-                <label>Observaciones</label>
+                <label for="obs">Observaciones</label>
                 <textarea id="obs" placeholder="Comentarios adicionales..."></textarea>
             </div>
         </div>
@@ -379,67 +361,76 @@
 
 </div>
 <script>
-    const WA_NUMBER = '5491144466050';
-    const radioPills = ['pill-none', 'pill-clasico', 'pill-premium'];
+    var WA_NUMBER = '5491144466050';
+    var selectedRadio = 'none';
+    var checks = { bosquejo: true, idea: true, ejecutivo: true };
+    var radioPills = ['pill-none', 'pill-clasico', 'pill-premium'];
 
-    ['pill-bosquejo', 'pill-idea', 'pill-ejecutivo'].forEach(id => {
-        const pill = document.getElementById(id);
-        const input = pill.querySelector('input[type="checkbox"]');
-        pill.addEventListener('click', () => {
-            input.checked = !input.checked;
-            pill.classList.toggle('selected', input.checked);
+    function calc() {
+        var area = parseFloat(document.getElementById('area').value) || 0;
+        var total = 0;
+        if (checks.bosquejo) total += area * 18;
+        if (checks.idea) total += area * 22;
+        if (checks.ejecutivo) total += 500;
+        if (selectedRadio === 'clasico') total += area * 1250;
+        if (selectedRadio === 'modena') total += area * 1500;
+        document.getElementById('total').textContent = 'US$ ' + Math.round(total).toLocaleString('es-AR');
+    }
+
+    // Checkbox pills
+    ['pill-bosquejo', 'pill-idea', 'pill-ejecutivo'].forEach(function(id) {
+        document.getElementById(id).addEventListener('click', function() {
+            var key = this.getAttribute('data-key');
+            checks[key] = !checks[key];
+            this.classList.toggle('selected', checks[key]);
             calc();
         });
     });
 
-    radioPills.forEach(id => {
-        const pill = document.getElementById(id);
-        const input = pill.querySelector('input[type="radio"]');
-        pill.addEventListener('click', () => {
-            radioPills.forEach(rid => document.getElementById(rid).classList.remove('selected'));
-            pill.classList.add('selected');
-            input.checked = true;
+    // Radio pills
+    radioPills.forEach(function(id) {
+        document.getElementById(id).addEventListener('click', function() {
+            selectedRadio = this.getAttribute('data-key');
+            radioPills.forEach(function(rid) {
+                document.getElementById(rid).classList.remove('selected');
+            });
+            document.getElementById(id).classList.add('selected');
             calc();
         });
     });
 
     document.getElementById('area').addEventListener('input', calc);
 
-    function calc() {
-        const area = parseFloat(document.getElementById('area').value) || 0;
-        let total = 0;
-        if (document.getElementById('pill-bosquejo').classList.contains('selected')) total += area * 18;
-        if (document.getElementById('pill-idea').classList.contains('selected')) total += area * 22;
-        if (document.getElementById('pill-ejecutivo').classList.contains('selected')) total += 500;
-        const con = document.querySelector('input[name="con"]:checked').value;
-        if (con === 'clasico') total += area * 1250;
-        if (con === 'modena') total += area * 1500;
-        document.getElementById('total').textContent = '$' + Math.round(total).toLocaleString('es-AR');
-    }
-
-    document.getElementById('btnWA').addEventListener('click', () => {
-        const nombre = document.getElementById('nombre').value.trim();
-        const telefono = document.getElementById('telefono').value.trim();
-        const localidad = document.getElementById('localidad').value.trim();
+    document.getElementById('btnWA').addEventListener('click', function() {
+        var nombre = document.getElementById('nombre').value.trim();
+        var telefono = document.getElementById('telefono').value.trim();
+        var localidad = document.getElementById('localidad').value.trim();
         if (!nombre || !telefono || !localidad) {
-            const m = document.getElementById('mensaje');
+            var m = document.getElementById('mensaje');
             m.textContent = 'Por favor completá nombre, teléfono y localidad.';
             m.className = 'mensaje error';
-            setTimeout(() => m.className = 'mensaje', 3000);
+            setTimeout(function() { m.className = 'mensaje'; }, 3000);
             return;
         }
-        const area = document.getElementById('area').value;
-        const email = document.getElementById('email').value || '-';
-        const obs = document.getElementById('obs').value || '-';
-        const total = document.getElementById('total').textContent;
-        const items = [];
-        if (document.getElementById('pill-bosquejo').classList.contains('selected')) items.push('• Bosquejo ($18/m²)');
-        if (document.getElementById('pill-idea').classList.contains('selected')) items.push('• Idea de proyecto ($22/m²)');
-        if (document.getElementById('pill-ejecutivo').classList.contains('selected')) items.push('• Proyecto ejecutivo (desde $500 USD fijo)');
-        const con = document.querySelector('input[name="con"]:checked').value;
-        if (con === 'clasico') items.push('• Steel Frame Clásico ($1.250/m²)');
-        if (con === 'modena') items.push('• Steel Frame Premium ($1.500/m²)');
-        const msg = `*Nueva solicitud de presupuesto – Sketch Build*\n\n👤 *Nombre:* ${nombre}\n📱 *Teléfono:* ${telefono}\n📍 *Localidad:* ${localidad}\n📧 *Email:* ${email}\n📐 *Superficie:* ${area} m²\n\n*Servicios seleccionados:*\n${items.join('\n')}\n\n💰 *Total estimado: ${total}*\n\n📝 *Observaciones:* ${obs}`;
+        var area = document.getElementById('area').value;
+        var email = document.getElementById('email').value || '-';
+        var obs = document.getElementById('obs').value || '-';
+        var total = document.getElementById('total').textContent;
+        var items = [];
+        if (checks.bosquejo) items.push('• Bosquejo ($18/m²)');
+        if (checks.idea) items.push('• Idea de proyecto ($22/m²)');
+        if (checks.ejecutivo) items.push('• Proyecto ejecutivo (desde $500 USD fijo)');
+        if (selectedRadio === 'clasico') items.push('• Steel Frame Clásico ($1.250/m²)');
+        if (selectedRadio === 'modena') items.push('• Steel Frame Premium ($1.500/m²)');
+        var msg = '*Nueva solicitud de presupuesto – Sketch Build*\n\n'
+            + '👤 *Nombre:* ' + nombre + '\n'
+            + '📱 *Teléfono:* ' + telefono + '\n'
+            + '📍 *Localidad:* ' + localidad + '\n'
+            + '📧 *Email:* ' + email + '\n'
+            + '📐 *Superficie:* ' + area + ' m²\n\n'
+            + '*Servicios seleccionados:*\n' + items.join('\n') + '\n\n'
+            + '💰 *Total estimado: ' + total + '*\n\n'
+            + '📝 *Observaciones:* ' + obs;
         window.open('https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(msg), '_blank');
     });
 

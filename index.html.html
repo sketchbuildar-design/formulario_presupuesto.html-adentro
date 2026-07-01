@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora de Presupuesto · Sketch Build</title>
 
+    <!-- Open Graph para Instagram / redes sociales -->
     <meta property="og:title" content="Calculadora de Presupuesto · Sketch Build">
     <meta property="og:description" content="Calculá tu presupuesto de arquitectura, diseño y construcción Steel Frame. Cobertura en toda la República Argentina.">
     <meta property="og:type" content="website">
@@ -77,7 +78,7 @@
             border: 0.5px solid #2d2d2f;
             background: #27272a;
             overflow: hidden;
-            transition: border-color 0.15s, background 0.15s;
+            transition: border-color 0.15s;
             cursor: pointer;
         }
         .pill-option.selected { border-color: #4a90d9; background: #1e2a38; }
@@ -95,7 +96,7 @@
         .pill-option.selected .pill-dot-inner { opacity: 1; }
 
         .pill-name { flex: 1; font-size: 13px; color: #e5e7eb; }
-        .pill-price { font-size: 12px; color: #9ca3af; text-align: right; }
+        .pill-price { font-size: 12px; color: #6b7280; text-align: right; }
         .pill-price em { font-style: normal; font-size: 10px; display: block; color: #6b7280; }
 
         .pill-detail { display: none; padding: 0 14px 14px 44px; }
@@ -196,8 +197,8 @@
 
     <div class="card">
         <div class="area-row">
-            <label for="area">Superficie (m²)</label>
-            <input class="area-input" type="number" value="100" id="area" min="0" step="1" aria-label="Superficie en metros cuadrados">
+            <label>Superficie (m²)</label>
+            <input class="area-input" type="number" value="100" id="area" min="0" step="1">
         </div>
 
         <div class="group-label">Diseño</div>
@@ -208,7 +209,7 @@
                 <div class="pill-top">
                     <div class="pill-dot"><div class="pill-dot-inner"></div></div>
                     <span class="pill-name">Bosquejo</span>
-                    <span class="pill-price">USD 18/m²</span>
+                    <span class="pill-price">$18/m²</span>
                 </div>
                 <div class="pill-detail">
                     <div class="detail-simple">
@@ -224,7 +225,7 @@
                 <div class="pill-top">
                     <div class="pill-dot"><div class="pill-dot-inner"></div></div>
                     <span class="pill-name">Idea de proyecto</span>
-                    <span class="pill-price">USD 22/m²</span>
+                    <span class="pill-price">$22/m²</span>
                 </div>
                 <div class="pill-detail">
                     <div class="detail-simple">
@@ -240,11 +241,11 @@
                 <div class="pill-top">
                     <div class="pill-dot"><div class="pill-dot-inner"></div></div>
                     <span class="pill-name">Proyecto ejecutivo</span>
-                    <span class="pill-price">USD 500<em>precio fijo</em></span>
+                    <span class="pill-price">desde $500 USD<em>precio fijo</em></span>
                 </div>
                 <div class="pill-detail">
                     <div class="detail-simple">
-                        <span>Planos completos para obra</span>
+                        <span>Planos completos para obra (estructura, instalaciones, carpintería)</span>
                         <span>Documentación técnica y legales</span>
                         <span>Precio fijo · Se confirma en anteproyecto</span>
                     </div>
@@ -269,7 +270,7 @@
                 <div class="pill-top">
                     <div class="pill-dot"><div class="pill-dot-inner"></div></div>
                     <span class="pill-name">Steel Frame Clásico</span>
-                    <span class="pill-price">USD 1.250/m²</span>
+                    <span class="pill-price">$1,250/m²</span>
                 </div>
                 <div class="pill-detail">
                     <div class="detail-cols">
@@ -304,7 +305,7 @@
                 <div class="pill-top">
                     <div class="pill-dot"><div class="pill-dot-inner"></div></div>
                     <span class="pill-name">Steel Frame Premium</span>
-                    <span class="pill-price">USD 1.500/m²</span>
+                    <span class="pill-price">$1,500/m²</span>
                 </div>
                 <div class="pill-detail">
                     <div class="detail-cols">
@@ -339,7 +340,7 @@
 
         <div class="total-bar">
             <span class="total-label">Total estimado</span>
-            <span class="total-amount" id="total">USD 4.800</span>
+            <span class="total-amount" id="total">$4.800</span>
         </div>
     </div>
 
@@ -347,60 +348,46 @@
         <div class="group-label" style="margin-top:0">Tus datos</div>
         <div class="fields">
             <div class="field field-full">
-                <label for="nombre">Nombre completo</label>
-                <input type="text" id="nombre" placeholder="Juan García" aria-label="Nombre completo">
+                <label>Nombre completo</label>
+                <input type="text" id="nombre" placeholder="Juan García">
             </div>
             <div class="field">
-                <label for="telefono">Teléfono / WhatsApp</label>
-                <input type="tel" id="telefono" placeholder="+54 9 11 2345-6789" aria-label="Teléfono o WhatsApp">
+                <label>Teléfono / WhatsApp</label>
+                <input type="tel" id="telefono" placeholder="+54 9 11 2345-6789">
             </div>
             <div class="field">
-                <label for="localidad">Localidad / Provincia</label>
-                <input type="text" id="localidad" placeholder="Buenos Aires" aria-label="Localidad o provincia">
+                <label>Localidad / Provincia</label>
+                <input type="text" id="localidad" placeholder="Buenos Aires">
             </div>
             <div class="field field-full">
-                <label for="email">Email</label>
-                <input type="email" id="email" placeholder="juan@email.com" aria-label="Email">
+                <label>Email</label>
+                <input type="email" id="email" placeholder="juan@email.com">
             </div>
             <div class="field field-full">
-                <label for="obs">Observaciones</label>
-                <textarea id="obs" placeholder="Comentarios adicionales..." aria-label="Observaciones"></textarea>
+                <label>Observaciones</label>
+                <textarea id="obs" placeholder="Comentarios adicionales..."></textarea>
             </div>
         </div>
-
-        <button class="btn-wa" id="btnWA" type="button">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="white" aria-hidden="true">
+        <button class="btn-wa" id="btnWA">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
                 <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
             </svg>
             Enviar cotización por WhatsApp
         </button>
-        <div class="mensaje" id="mensaje" aria-live="polite"></div>
+        <div class="mensaje" id="mensaje"></div>
     </div>
-</div>
 
+</div>
 <script>
     const WA_NUMBER = '5491144466050';
     const radioPills = ['pill-none', 'pill-clasico', 'pill-premium'];
 
-    function moneyUSD(n) {
-        return 'USD ' + Math.round(n).toLocaleString('es-AR');
-    }
-
-    function syncSelected(id, checked) {
-        document.getElementById(id).classList.toggle('selected', checked);
-    }
-
     ['pill-bosquejo', 'pill-idea', 'pill-ejecutivo'].forEach(id => {
         const pill = document.getElementById(id);
         const input = pill.querySelector('input[type="checkbox"]');
-        pill.addEventListener('click', e => {
-            if (e.target.tagName === 'INPUT') return;
+        pill.addEventListener('click', () => {
             input.checked = !input.checked;
-            syncSelected(id, input.checked);
-            calc();
-        });
-        input.addEventListener('change', () => {
-            syncSelected(id, input.checked);
+            pill.classList.toggle('selected', input.checked);
             calc();
         });
     });
@@ -408,16 +395,10 @@
     radioPills.forEach(id => {
         const pill = document.getElementById(id);
         const input = pill.querySelector('input[type="radio"]');
-        pill.addEventListener('click', e => {
-            if (e.target.tagName === 'INPUT') return;
+        pill.addEventListener('click', () => {
             radioPills.forEach(rid => document.getElementById(rid).classList.remove('selected'));
             pill.classList.add('selected');
             input.checked = true;
-            calc();
-        });
-        input.addEventListener('change', () => {
-            radioPills.forEach(rid => document.getElementById(rid).classList.remove('selected'));
-            pill.classList.add('selected');
             calc();
         });
     });
@@ -426,60 +407,39 @@
 
     function calc() {
         const area = parseFloat(document.getElementById('area').value) || 0;
-        let totalUSD = 0;
-
-        if (document.getElementById('pill-bosquejo').classList.contains('selected')) totalUSD += area * 18;
-        if (document.getElementById('pill-idea').classList.contains('selected')) totalUSD += area * 22;
-        if (document.getElementById('pill-ejecutivo').classList.contains('selected')) totalUSD += 500;
-
+        let total = 0;
+        if (document.getElementById('pill-bosquejo').classList.contains('selected')) total += area * 18;
+        if (document.getElementById('pill-idea').classList.contains('selected')) total += area * 22;
+        if (document.getElementById('pill-ejecutivo').classList.contains('selected')) total += 500;
         const con = document.querySelector('input[name="con"]:checked').value;
-        if (con === 'clasico') totalUSD += area * 1250;
-        if (con === 'modena') totalUSD += area * 1500;
-
-        document.getElementById('total').textContent = moneyUSD(totalUSD);
+        if (con === 'clasico') total += area * 1250;
+        if (con === 'modena') total += area * 1500;
+        document.getElementById('total').textContent = '$' + Math.round(total).toLocaleString('es-AR');
     }
 
     document.getElementById('btnWA').addEventListener('click', () => {
         const nombre = document.getElementById('nombre').value.trim();
         const telefono = document.getElementById('telefono').value.trim();
         const localidad = document.getElementById('localidad').value.trim();
-
         if (!nombre || !telefono || !localidad) {
             const m = document.getElementById('mensaje');
             m.textContent = 'Por favor completá nombre, teléfono y localidad.';
             m.className = 'mensaje error';
-            setTimeout(() => {
-                m.className = 'mensaje';
-                m.textContent = '';
-            }, 3000);
+            setTimeout(() => m.className = 'mensaje', 3000);
             return;
         }
-
         const area = document.getElementById('area').value;
         const email = document.getElementById('email').value || '-';
         const obs = document.getElementById('obs').value || '-';
         const total = document.getElementById('total').textContent;
-
         const items = [];
-        if (document.getElementById('pill-bosquejo').classList.contains('selected')) items.push('• Bosquejo (USD 18/m²)');
-        if (document.getElementById('pill-idea').classList.contains('selected')) items.push('• Idea de proyecto (USD 22/m²)');
-        if (document.getElementById('pill-ejecutivo').classList.contains('selected')) items.push('• Proyecto ejecutivo (USD 500 fijo)');
-
+        if (document.getElementById('pill-bosquejo').classList.contains('selected')) items.push('• Bosquejo ($18/m²)');
+        if (document.getElementById('pill-idea').classList.contains('selected')) items.push('• Idea de proyecto ($22/m²)');
+        if (document.getElementById('pill-ejecutivo').classList.contains('selected')) items.push('• Proyecto ejecutivo (desde $500 USD fijo)');
         const con = document.querySelector('input[name="con"]:checked').value;
-        if (con === 'clasico') items.push('• Steel Frame Clásico (USD 1.250/m²)');
-        if (con === 'modena') items.push('• Steel Frame Premium (USD 1.500/m²)');
-
-        const msg = *Nueva solicitud de presupuesto – Sketch Build*\n\n +
-            Hola, soy ${nombre}\n\n +
-            👤 *Nombre:* ${nombre}\n +
-            📱 *Teléfono:* ${telefono}\n +
-            📍 *Localidad:* ${localidad}\n +
-            📧 *Email:* ${email}\n +
-            📐 *Superficie:* ${area} m²\n\n +
-            *Servicios seleccionados:*\n${items.join('\n')}\n\n +
-            💰 *Total estimado: ${total}*\n\n +
-            📝 *Observaciones:* ${obs};
-
+        if (con === 'clasico') items.push('• Steel Frame Clásico ($1.250/m²)');
+        if (con === 'modena') items.push('• Steel Frame Premium ($1.500/m²)');
+        const msg = `*Nueva solicitud de presupuesto – Sketch Build*\n\n👤 *Nombre:* ${nombre}\n📱 *Teléfono:* ${telefono}\n📍 *Localidad:* ${localidad}\n📧 *Email:* ${email}\n📐 *Superficie:* ${area} m²\n\n*Servicios seleccionados:*\n${items.join('\n')}\n\n💰 *Total estimado: ${total}*\n\n📝 *Observaciones:* ${obs}`;
         window.open('https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(msg), '_blank');
     });
 
